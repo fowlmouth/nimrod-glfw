@@ -224,12 +224,15 @@ type
     TWindowSizeCallback* = proc (width: cint, height: cint){.stdcall.}
     TWindowCloseCallback* = proc (): cint{.stdcall.}
     TWindowRefreshCallback* = proc (){.stdcall.}
-    TMouseButtonCallback* = proc (a: cint, b: cint){.stdcall.}
+    TMouseButtonCallback* = proc (button: cint, status: TKeyAction){.stdcall.}
     TMousePosCallback* = proc (a: cint, b: cint){.stdcall.}
     TMouseWheelCallback* = proc (a: cint){.stdcall.}
-    TKeyCallback* = proc (a: cint, b: cint){.stdcall.}
+    TKeyCallback* = proc (key: cint, status: TKeyAction){.stdcall.}
     TCharCallback* = proc (a: cint, b: cint){.stdcall.}
     TThreadCallback* = proc (a: Pointer){.stdcall.}
+    
+    TKeyAction* {.size: sizeof(cint).} = enum
+      ActionReleased = 0, ActionPressed = 1
 
 ## -----------------------------------------------------------------------------------------
 
